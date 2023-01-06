@@ -8,12 +8,12 @@ function getDados(mes ,temp){
         })
 }
 getDados('obtendo dados da API',2000 )
-.then((res) => {
+.then(res => {
     console.log(res)
     return getDados('tratando os dados da API', 1000)
     .then((res) => {
         console.log(res)
-        return getDados( 888, 1500).then((res) => {
+        return getDados( 'procesando dados da API', 3500).then((res) => {
             console.log(res)})
             .catch(e => console.log(e))
             .then(() => console.log('Renderizar os dados da Api'))
