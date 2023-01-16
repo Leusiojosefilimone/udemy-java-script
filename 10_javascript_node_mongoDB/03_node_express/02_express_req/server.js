@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send(`<form action="/" method="POST">
     Nome do cliente: <input type="text" name="name"></br>
     Empresa do cliente: <input type="text" name="empresa">
-    <button>Olá Mundo</button>
+    <button>Enviar</button>
 </form>`);
 })
 
