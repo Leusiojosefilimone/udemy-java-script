@@ -9,7 +9,10 @@ HomeModel.create({
 */
 exports.paginaInicial = (req, res) => {
   req.flash('info', 'ola mundo')
-  res.render('index');
+  res.render('index',{
+    titulo: 'este é o titulo da página',
+    numeros: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  });
 };
 
 exports.trataPost = (req, res) => {
