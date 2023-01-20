@@ -8,6 +8,7 @@ HomeModel.create({
 .catch(e => console.log(e))
 */
 exports.paginaInicial = (req, res) => {
+  req.flash('info', 'ola mundo')
   res.render('index');
 };
 
