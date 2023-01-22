@@ -4,8 +4,5 @@ const homeShema = new mongoose.Schema({
     descricao: String
 })
 const HomeModel = mongoose.model('home', homeShema)
-class Home{
 
-
-}
-exports = Home
+exports = HomeModel
