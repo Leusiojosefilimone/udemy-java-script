@@ -7,6 +7,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifi
     app.emit('pronto');
   })
   .catch(e => console.log(e));
+  
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
