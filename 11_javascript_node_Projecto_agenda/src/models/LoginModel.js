@@ -31,6 +31,14 @@ class Login{
   async register(){
     await this.userExists()
     if(this.erros.length > 0 )return;
+    const salt = bcryptjs.genSaltSync()
+    this.body.password = bcryptjs.hashSync(this.body.password)
+    try{
+       this.user = await LoginModel.create(this.body)
+    }catch(e){
+      console.log(e)
+    }
+  
   }
     async userExists(){
      const user = await LoginModel.findOne({email: this.body.email})
@@ -44,7 +52,7 @@ class Login{
   }
   cleanUp(){
     for (const key in this.body){
-      if (this.body[key] !== 'string'){
+      if (typeof this.body[key] !== 'string'){
         this.body[key] = ''
       }
     }
