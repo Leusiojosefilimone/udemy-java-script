@@ -3,16 +3,42 @@ module.exports.index = (req, res) => {
     res.render('Login')
 }
 module.exports.register = async function(req, res){
-    const login = new Login(req.body)
-    await  login.register();
+    try{
+        const login = new Login(req.body)
+        await  login.register();
+         if(login.erros.length > 0){
+            req.flash('erros', login.erros)
+            req.session.save(function(){
+                return res.redirect('/login/index')
+                });
+            return
+            }
+            req.flash('success', 'Usuario criado com sucesso')
+            req.session.save(function(){
+            return res.redirect('/login/index')})
+    }catch(e){
+        console.log(e)
+        return res.render('404')
+    }
+}
+module.exports.login = async function(req, res){
+    try{
+        const login = new Login(req.body)
+        await login.login()
+         if(login.erros.length > 0){
+            req.flash('erros', login.erros)
+            req.session.save(function(){
+                return res.redirect('/login/index')
+                });
+            return;
+            }
+            req.flash('success', 'Você entrou no sistema.')
+            req.session.user = login.user;
+            req.session.save(function(){
+             return res.redirect('/login/index')})
+    }catch(e){
+        console.log(e)
+        return res.render('404')
+    }
 
-     if(login.erros.length > 0){
-        req.flash('erros', login.erros)
-        req.session.save(function(){
-            return res.redirect('/login/index')
-        });
-      return
-     }
-
-    res.send(login)
 }
